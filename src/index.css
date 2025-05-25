@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cursor-color: rgba(59, 130, 246, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-gray-900 dark:text-gray-100 bg-white dark:bg-dark-300 selection:bg-primary-200 dark:selection:bg-primary-700;
+  overflow-x: hidden;
+}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  background-color: var(--cursor-color);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  mix-blend-mode: difference;
+}
+
+.cursor-grow {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
+  mix-blend-mode: difference;
+}
+
+.gradient-overlay {
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@layer components {
+  .section-container {
+    @apply py-16 px-4 sm:px-6 md:py-24 lg:py-32 lg:px-8 max-w-7xl mx-auto;
+  }
+  
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-gray-900 dark:text-white;
+  }
+  
+  .section-subtitle {
+    @apply text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-16 max-w-3xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-white focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-500 hover:bg-secondary-600 text-white focus:ring-secondary-500;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 focus:ring-primary-500;
+  }
+
+  .nav-link {
+    @apply relative text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300 px-2 py-1;
+    @apply after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary-500 after:transition-all after:duration-300;
+    @apply hover:after:w-full;
+  }
+
+  .nav-link-active {
+    @apply text-primary-500 dark:text-primary-400 after:w-full;
+  }
+
+  .card {
+    @apply bg-white dark:bg-dark-200 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300;
+    @apply border border-gray-100 dark:border-dark-100;
+  }
+
+  .animated-bg {
+    @apply relative bg-gradient-to-tr from-primary-50/50 via-white to-secondary-50/50 dark:from-dark-200 dark:via-dark-300 dark:to-secondary-900/10;
+  }
+
+  .timeline-item {
+    @apply relative pl-10 pb-8 border-l-2 border-gray-200 dark:border-gray-700;
+    @apply before:absolute before:left-[-9px] before:top-0 before:h-4 before:w-4 before:rounded-full;
+    @apply before:bg-primary-500 before:border-4 before:border-white dark:before:border-dark-300;
+  }
+}
