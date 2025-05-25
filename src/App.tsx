@@ -11,10 +11,12 @@ import Contact from './pages/Contact';
 import ProjectDetail from './pages/ProjectDetail';
 import ThemeProvider from './context/ThemeContext';
 import NoiseOverlay from './components/ui/NoiseOverlay';
+import { useScrollToTop } from './hooks/useScrollToTop';
 
 function App() {
   const location = useLocation();
   const [isLoaded, setIsLoaded] = useState(false);
+  useScrollToTop();
 
   useEffect(() => {
     setIsLoaded(true);
